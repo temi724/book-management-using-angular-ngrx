@@ -1,0 +1,56 @@
+<div class="flex justify-center flex-col items-center">
+  <div class="mt-10 flex flex-col gap-y-2">
+    <h1 class="my-2 text-center">Enter book details to create a new book</h1>
+    <input
+      #bookId
+      class="h-10 p-2 w-[400px] border-3 border-gray-200 rounded-md"
+      type="text"
+      name=""
+      placeholder="Book ID"
+      id=""
+    />
+    <input
+      #bookTitle
+      class="h-10 p-2 w-[400px] border-3 border-gray-200 rounded-md"
+      type="text"
+      name=""
+      placeholder="Book title"
+      id=""
+    />
+    <input
+      placeholder="Book author"
+      #bookAuthor
+      class="h-10 p-2 w-[400px] border-3 border-gray-200 rounded-md"
+      type="text"
+      name=""
+      id=""
+    />
+    <button
+      (click)="addBook(bookId.value, bookTitle.value, bookAuthor.value)"
+      class="h-10 w-[400px] bg-green-700 rounded-md text-white"
+    >
+      post
+    </button>
+  </div>
+
+  <h1 class="my-10">Books listed</h1>
+
+  <div *ngFor="let book of books$ | async">
+    <div
+      class="h-20 w-[400px] p-3 shadow-md mt-5 rounded-md flex justify-between items-center"
+    >
+      <div>
+        <h2>{{ book.title }}</h2>
+      </div>
+      <div>
+        <h2>{{ book.author }}</h2>
+      </div>
+      <button
+        class="h-10 p-2 bg-red-900 rounded-md text-white"
+        (click)="removeBook(book.id)"
+      >
+        Rem
+      </button>
+    </div>
+  </div>
+</div>
