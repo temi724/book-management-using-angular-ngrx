@@ -7,9 +7,10 @@ import {
 } from './book.action';
 import { Book } from '../models/books';
 
-export const initializeState: Book[] = [];
-export const bookReducer = createReducer(
-  initializeState,
+export const initialState: Book[] = [];
+
+export const BookReducer = createReducer(
+  initialState,
   on(AddBook, (state) => {
     return state;
   }),
@@ -18,7 +19,7 @@ export const bookReducer = createReducer(
     { id, title, author },
   ]),
   on(AddBookFailure, (state, { error }) => {
-    console.error('Error adding book:', error);
+    console.error(error);
     return state;
   }),
   on(RemoveBook, (state, { id }) => state.filter((book) => book.id !== id))
